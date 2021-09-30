@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloGit">
         <activity
-            android:name=".HomeActivity"
-            android:label="Home" />
+            android:name=".NavActivity"
+            android:label="@string/title_activity_nav" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
