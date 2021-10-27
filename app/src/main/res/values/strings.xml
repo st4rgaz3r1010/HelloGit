@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">HelloGit</string>
+    <string name="app_name">Buku Digital</string>
+    <string name="title_activity_nav">Buku Digital</string>
+    <string name="title_home">Home</string>
+    <string name="title_collection">Collection</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_account">Account</string>
+    <string name="splash_text">Development version</string>
 </resources>
