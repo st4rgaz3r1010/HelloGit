@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloGit">
+
+        <meta-data
+            android:name="com.google.android.apps.books.API_KEY"
+            android:value="AIzaSyAQbNcPwZCncpjj3zxgT1hM3R53opRKda8" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".NavActivity"
             android:label="@string/title_activity_nav" />
