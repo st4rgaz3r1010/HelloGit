@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <corners android:radius="30dp" />
+
+    <vector
+        android:width="375dp"
+        android:height="406dp"
+        android:viewportWidth="375"
+        android:viewportHeight="406">
+
+        <group>
+            <clip-path android:pathData="M0 0H375V406H0V0Z" />
+
+            <path
+                android:pathData="M0 0V406H375V0"
+                android:fillColor="#FFFFFF" />
+        </group>
+
+    </vector>
+</shape>
