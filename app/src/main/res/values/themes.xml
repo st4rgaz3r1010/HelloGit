@@ -12,5 +12,202 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="bg_layout">#F8F8F8</item>
+        <item name="bg">#FFFFFF</item>
+        <item name="rectangle_2">#F8F8F8</item>
+        <item name="rectangle_2_1">#F3F3F3</item>
+        <item name="rectangle_4">#F7F7F7</item>
+        <item name="rectangle_4_r1">#098b5c</item>
+        <item name="rectangle_7">#FFFFFF</item>
+        <item name="rectangle_7_1">#F3F3F3</item>
+        <item name="line_2">#6B6B6B</item>
+        <item name="ellipse_2">#098b5c</item>
+        <item name="rectangle_3">#098b5c</item>
+        <item name="rectangle_1">#098b5c</item>
+
     </style>
+
+    <style name="search_text">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="bagian_terbaru">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+        <item name="android:fontWeight">600</item>
+        <item name="android:lineHeight">24sp</item>
+    </style>
+
+    <style name="the_magic">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="selesai">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#AFAFAF</item>
+    </style>
+
+    <style name="the_martian">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="completed">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="dongeng">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="semua_buku">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="komik">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="novel">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="fantasi">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="sedang_tren">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="penulis_buku_trend_1">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="judul_buku_trend_1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="penulis_buku_2">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="judul_buku_2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="penulis_buku_3">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="judul_buku_3">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="nama_profil">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="desc_profil">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="daftar_buku">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="header_detail_buku">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#2D2D2D</item>
+    </style>
+
+    <style name="judul_buku_db">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="pengarang_buku_db">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="informasi_harga_db">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#098B5C</item>
+    </style>
+
+    <style name="judul_deskripsi_db">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="deskripsi_buku_db">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#BDBDBD</item>
+    </style>
+
+    <style name="rating_buku_db">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#6B6B6B</item>
+    </style>
+
+    <style name="jumlah_hal_buku_db">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#6B6B6B</item>
+    </style>
+
+    <style name="jumlah_rating_buku_db">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="hal_buku_db">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="bahasa_buku">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#6B6B6B</item>
+    </style>
+
+    <style name="bahasa_buku_db">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="desc_btn_bayar">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="dark_mode">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="deskripsi_buku_d1">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#AFAFAF</item>
+    </style>
+
 </resources>
