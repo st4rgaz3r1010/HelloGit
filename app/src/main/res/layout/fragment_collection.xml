@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F8F8F8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/bg_layout"
     tools:context=".ui.collection.CollectionFragment">
 
     <TextView
+        android:id="@+id/header_collection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Collection belum ada data" />
-</RelativeLayout>
+        android:layout_margin="18dp"
+        android:text="Koleksi"
+        android:textAppearance="@style/header_detail_buku"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

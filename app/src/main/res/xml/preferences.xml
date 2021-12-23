@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Theme">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="DARK"
+            android:summaryOff="Dark mode is disabled"
+            android:summaryOn="Dark mode is enabled"
+            android:title="Dark Mode" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About">
+
+        <Preference
+            android:summary="1.5-alpha7"
+            android:title="Versi" />
+        <Preference
+            android:key="Tentang Kami"
+            android:title="Tentang Kami" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

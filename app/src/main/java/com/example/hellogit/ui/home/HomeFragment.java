@@ -1,80 +1,151 @@
 //Coding by Muhammad Rifqi Nugraha - Kelompok Coding
-
 package com.example.hellogit.ui.home;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hellogit.BookDetailsFragment;
+import com.example.hellogit.BookSearchViewModel;
+import com.example.hellogit.POJO.Book;
+import com.example.hellogit.POJO.Books;
+import com.example.hellogit.POJO.ImageLinks;
+import com.example.hellogit.POJO.Item;
+import com.example.hellogit.POJO.RetailPrice;
+import com.example.hellogit.POJO.SaleInfo;
+import com.example.hellogit.POJO.VolumeInfo;
 import com.example.hellogit.R;
-import com.example.hellogit.recyclerview.Book;
+import com.example.hellogit.client.BookClient;
 import com.example.hellogit.recyclerview.BookAdapter;
+import com.example.hellogit.recyclerview.BookAdapter.ItemClickListener;
+import com.example.hellogit.recyclerview.BookSearchResultAdapter;
+import com.example.hellogit.recyclerview.HorizontalBookAdapter;
+import com.example.hellogit.recyclerview.HorizontalBookAdapterTwo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+@SuppressWarnings("ALL")
+public class HomeFragment extends Fragment implements BookAdapter.ItemClickListener {
     private HomeViewModel homeViewModel;
 
-    RecyclerView recyclerview;
-    List<Book> mData;
-    BookAdapter bookAdapter;
-    TextView nama_profil, desc_profil, search_text, bagian_terbaru, the_magic, progress_buku_1,
-            the_martian, progress_buku_2, judul_buku_3s, progress_buku_3, filter_semua_buku,
-            filter_komik, filter_novel, filter_fantasi, filter_dongeng, bagian_trending,
-            penulis_buku_trend_1, judul_buku_trend_1, penulis_buku_trend_2, judul_buku_trend_2,
-            penulis_buku_trend_3, judul_buku_trend_3, daftar_buku;
+    private static final String TAG = "fragment_home";
+    Context context;
+    ItemClickListener mClickListener;
+    Callback<Books> Callback;
+    Callback<ImageLinks> ICallback;
+    TextView nama_profil, desc_profil, search_edit, bagian_terbaru, bagian_trending, daftar_buku;
+    ImageButton search_btn;
+    private RecyclerView recyclerview, recyclerview_horizontal, recyclerview_search,
+            recyclerview_horizontal_two;
+    private View h;
+    private ArrayList<Book> mData = new ArrayList<>();
+    private BookAdapter bookAdapter;
+    private HorizontalBookAdapter horizontalBookAdapter;
+    private HorizontalBookAdapterTwo horizontalBookAdapterTwo;
+    private BookSearchResultAdapter bookSearchResultAdapter;
+    private BookSearchViewModel bookSearchViewModel;
+    private List<Item> results = new ArrayList<>();
 
     public HomeFragment() {
     }
 
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        bookSearchResultAdapter = new BookSearchResultAdapter(results, context);
+
+        bookSearchViewModel = ViewModelProviders.of(this).get(BookSearchViewModel.class);
+        bookSearchViewModel.init();
+        bookSearchViewModel.getVolumesResponseLiveData().observe(this, new Observer<Books>() {
+            @Override
+            public void onChanged(Books books) {
+                if (books != null) {
+                    bookSearchResultAdapter.setResults(books.getItems());
+                }
+            }
+        });
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View h = inflater.inflate(R.layout.fragment_home, container, false);
+        h = inflater.inflate(R.layout.fragment_home, container, false);
+        h.setTag(TAG);
         //Mendapatkan referensi untuk recyclerView
         recyclerview = h.findViewById(R.id.recyclerview);
-        // Membuat adapter
-        bookAdapter = new BookAdapter(mData, getContext());
-        // Mengatur adapter
-        recyclerview.setAdapter(bookAdapter);
+        recyclerview_horizontal = h.findViewById(R.id.recyclerview_horizontal);
+        recyclerview_search = h.findViewById(R.id.recyclerview_search);
+        recyclerview_horizontal_two = h.findViewById(R.id.recyclerview_horizontal_two);
         //Mengatur atribut ukuran item lebih optimize
         recyclerview.setHasFixedSize(true);
+        recyclerview_horizontal.setHasFixedSize(true);
+        recyclerview_search.setHasFixedSize(true);
+        recyclerview_horizontal_two.setHasFixedSize(true);
         //Mengatur layoutManager
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false));
+        recyclerview.setItemAnimator(new DefaultItemAnimator());
+        recyclerview_horizontal.setLayoutManager(new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false));
+        recyclerview_horizontal.setItemAnimator(new DefaultItemAnimator());
+        recyclerview_horizontal_two.setLayoutManager(new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false));
+        recyclerview_horizontal_two.setItemAnimator(new DefaultItemAnimator());
+        recyclerview_search.setLayoutManager(new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.HORIZONTAL, false));
+        recyclerview_search.setItemAnimator(new DefaultItemAnimator());
+        recyclerview_search.setAdapter(bookSearchResultAdapter);
 
+        search_edit = h.findViewById(R.id.search_edit);
+        search_btn = h.findViewById(R.id.search_btn);
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                perform_search();
+            }
+        });
+
+        // inisialisasi variabel
         nama_profil = (TextView) h.findViewById(R.id.nama_profil);
         desc_profil = (TextView) h.findViewById(R.id.desc_profil);
-        search_text = (TextView) h.findViewById(R.id.search_text);
+        search_edit = (TextView) h.findViewById(R.id.search_edit);
         bagian_terbaru = (TextView) h.findViewById(R.id.bagian_terbaru);
-        the_magic = (TextView) h.findViewById(R.id.the_magic);
-        progress_buku_1 = (TextView) h.findViewById(R.id.progress_buku_1);
-        the_martian = (TextView) h.findViewById(R.id.the_martian);
-        progress_buku_2 = (TextView) h.findViewById(R.id.progress_buku_2);
-        judul_buku_3s = (TextView) h.findViewById(R.id.judul_buku_3s);
-        progress_buku_3 = (TextView) h.findViewById(R.id.progress_buku_3);
-        filter_semua_buku = (TextView) h.findViewById(R.id.filter_semua_buku);
-        filter_komik = (TextView) h.findViewById(R.id.filter_komik);
-        filter_novel = (TextView) h.findViewById(R.id.filter_novel);
-        filter_fantasi = (TextView) h.findViewById(R.id.filter_fantasi);
-        filter_dongeng = (TextView) h.findViewById(R.id.filter_dongeng);
         bagian_trending = (TextView) h.findViewById(R.id.bagian_trending);
-        penulis_buku_trend_1 = (TextView) h.findViewById(R.id.penulis_buku_trend_1);
-        judul_buku_trend_1 = (TextView) h.findViewById(R.id.judul_buku_trend_1);
-        penulis_buku_trend_2 = (TextView) h.findViewById(R.id.penulis_buku_trend_2);
-        judul_buku_trend_2 = (TextView) h.findViewById(R.id.judul_buku_trend_2);
-        penulis_buku_trend_3 = (TextView) h.findViewById(R.id.penulis_buku_trend_3);
-        judul_buku_trend_3 = (TextView) h.findViewById(R.id.judul_buku_trend_3);
         daftar_buku = (TextView) h.findViewById(R.id.daftar_buku);
 
+        // Custom Font
         Typeface regular = Typeface.createFromAsset(getActivity().getAssets(), "font/PoppinsRegular.ttf");
         Typeface semibold = Typeface.createFromAsset(getActivity().getAssets(), "font/PoppinsSemiBold.ttf");
         Typeface bold = Typeface.createFromAsset(getActivity().getAssets(), "font/PoppinsBold.ttf");
@@ -82,44 +153,112 @@ public class HomeFragment extends Fragment {
 
         nama_profil.setTypeface(semibold);
         desc_profil.setTypeface(regular);
-        search_text.setTypeface(medium);
+        search_edit.setTypeface(medium);
         bagian_terbaru.setTypeface(semibold);
-        the_magic.setTypeface(semibold);
-        progress_buku_1.setTypeface(medium);
-        the_martian.setTypeface(semibold);
-        progress_buku_2.setTypeface(medium);
-        judul_buku_3s.setTypeface(semibold);
-        progress_buku_3.setTypeface(medium);
-        filter_semua_buku.setTypeface(semibold);
-        filter_komik.setTypeface(semibold);
-        filter_novel.setTypeface(semibold);
-        filter_fantasi.setTypeface(semibold);
-        filter_dongeng.setTypeface(semibold);
-        bagian_trending.setTypeface(semibold);
-        penulis_buku_trend_1.setTypeface(medium);
-        judul_buku_trend_1.setTypeface(semibold);
-        penulis_buku_trend_2.setTypeface(medium);
-        judul_buku_trend_2.setTypeface(semibold);
-        penulis_buku_trend_3.setTypeface(medium);
-        judul_buku_trend_3.setTypeface(semibold);
         daftar_buku.setTypeface(semibold);
+
+        network_data();
 
         return h;
     }
 
+    public void perform_search() {
+        String keyword = search_edit.getEditableText().toString();
+        bookSearchViewModel.searchVolumes(keyword);
+    }
+
+    private void network_data() {
+        String API_BASE = "https://www.googleapis.com/books/v1/";
+
+        OkHttpClient.Builder httpsClient = new OkHttpClient.Builder();
+
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(API_BASE)
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = builder.client(httpsClient.build())
+                .build();
+
+        BookClient ebooksInterface = retrofit.create(BookClient.class);
+        Call<Books> call = ebooksInterface.getBooks();
+        call.enqueue(new Callback<Books>() {
+            private Object Book;
+
+            @Override
+            public void onResponse(@NonNull Call<Books> call, @NonNull Response<Books> response) {
+                if (response.isSuccessful()){
+                    List<Item> itemList = response.body().getItems();
+                    for (Item item : itemList){
+                        VolumeInfo infoVolume = item.getVolumeInfo();
+                        SaleInfo info_penjualan = item.getSaleInfo();
+                        RetailPrice harga_eceran = info_penjualan.getRetailPrice();
+                        String judul = infoVolume.getTitle();
+                        List<String> daftar_pengarang = infoVolume.getAuthors();
+                        String pengarang = "";
+                        Integer halaman = 0;
+                        if (daftar_pengarang.size() == 0) {
+                            pengarang = "oleh Anonim";
+                        }
+                        else {
+                            pengarang = "oleh " + daftar_pengarang.get(0);
+                        }
+                        ImageLinks imageLinks = infoVolume.getImageLinks();
+                        String cover = imageLinks.getSmallThumbnail()
+                                .replace("http://", "https://");
+                        double peringkat = 0, harga = 0;
+                        if (infoVolume.getAverageRating() != null){
+                            peringkat = infoVolume.getAverageRating();
+                        } else {
+                            peringkat = 1;
+                        }
+
+                        if (harga_eceran.getAmount() != null) {
+                            harga = harga_eceran.getAmount();
+                        } else {
+                            harga = 0.00;
+                        }
+
+                        int hitung = infoVolume.getPageCount();
+                        if (hitung != 0){
+                            halaman = infoVolume.getPageCount();
+                        } else {
+                            halaman = 0;
+                        }
+                        mData.add(new Book(judul, pengarang, cover, peringkat, harga, halaman));
+                    }
+                    // Membuat adapter
+                    bookAdapter = new BookAdapter(mData, getContext(), Callback,
+                            HomeFragment.this, ICallback);
+                    horizontalBookAdapter = new HorizontalBookAdapter(mData, getContext(), Callback,
+                            HomeFragment.this, ICallback);
+                    horizontalBookAdapterTwo = new HorizontalBookAdapterTwo(mData, getContext(),
+                            Callback, HomeFragment.this, ICallback);
+                    // Mengatur adapter
+                    recyclerview.setAdapter(bookAdapter);
+                    recyclerview_horizontal.setAdapter(horizontalBookAdapter);
+                    recyclerview_horizontal_two.setAdapter(horizontalBookAdapterTwo);
+                } else {
+                        Toast.makeText(getContext(), "Error : " + response.body(),
+                                Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Books> call, Throwable t) {
+            }
+        });
+    }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onItemClick(com.example.hellogit.POJO.Book book) {
+        Fragment title_book = BookDetailsFragment.newInstance(book.getTitle());
 
-        //Data untuk recyclerView
-        mData = new ArrayList<>();
-        mData.add(new Book(R.drawable.trending_book1, "Buku #1", "Ini adalah buku #1"));
-        mData.add(new Book(R.drawable.trending_book2, "Buku #2", "Ini adalah buku #2"));
-        mData.add(new Book(R.drawable.trending_book3, "Buku #3", "Ini adalah buku #3"));
-        mData.add(new Book(R.drawable.trending_book3, "Buku #4", "Ini adalah buku #4"));
-        mData.add(new Book(R.drawable.trending_book2, "Buku #5", "Ini adalah buku #5"));
-        mData.add(new Book(R.drawable.trending_book2, "Buku #6", "Ini adalah buku #6"));
-        mData.add(new Book(R.drawable.trending_book1, "Buku #7", "Ini adalah buku #7"));
-
+        // Buat fragmen dan berikan argumen untuk buku yang dipilih
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.hide(getActivity().getSupportFragmentManager().findFragmentByTag("fragment_home"));
+        transaction.add(R.id.fragment_container, title_book);
+        transaction.addToBackStack(null); // Tambahkan transaksi ke back-stack sehingga pengguna dapat menavigasi kembali
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.commit(); // Lakukan transaksi fragmen
     }
 }

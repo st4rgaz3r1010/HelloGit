@@ -15,11 +15,6 @@
         android:label="@string/title_collection"
         tools:layout="@layout/fragment_collection" />
     <fragment
-        android:id="@+id/navigation_cart"
-        android:name="com.example.hellogit.ui.cart.CartFragment"
-        android:label="@string/title_cart"
-        tools:layout="@layout/fragment_cart" />
-    <fragment
         android:id="@+id/navigation_account"
         android:name="com.example.hellogit.ui.account.AccountFragment"
         android:label="@string/title_account"

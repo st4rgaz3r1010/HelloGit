@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Buku Trending #1 -->
+    <LinearLayout
+        android:id="@+id/buku_trending_1"
+        android:layout_width="110dp"
+        android:layout_height="215dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="0dp"
+        android:background="#00000000"
+        android:forceHasOverlappingRendering="false"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="110dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="5dp"
+            android:elevation="30dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <!-- Cover Buku Trending #1 -->
+            <ImageView
+                android:id="@+id/cover_buku_d1"
+                android:layout_width="110dp"
+                android:layout_height="160dp"
+                android:background="#F3F3F3"
+                android:contentDescription="Buku Trending"
+                android:scaleType="fitXY" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Rectangle 3 -->
+        <View
+            android:id="@+id/rectangle_trending1"
+            android:layout_width="110dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="-110dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="215dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp">
+
+        <!-- Penulis buku -->
+        <TextView
+            android:id="@+id/penulis_buku_d1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/judul_buku_d1"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:gravity="top"
+            android:text="Guy Kawasaki"
+            android:textAppearance="@style/penulis_buku_trend_1"
+            />
+
+        <!-- Judul Buku -->
+        <TextView
+            android:id="@+id/judul_buku_d1"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="170dp"
+            android:text="Enchantment"
+            android:textAppearance="@style/judul_buku_trend_1"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

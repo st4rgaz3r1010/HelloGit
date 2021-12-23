@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="dark_theme">
+        <attr name="bg" format="color"/>
+        <attr name="bg_layout" format="color"/>
+        <attr name="nama_profil" format="color"/>
+        <attr name="desc_profil" format="color"/>
+        <attr name="search_text" format="color"/>
+        <attr name="bagian_terbaru" format="color"/>
+        <attr name="the_magic" format="color"/>
+        <attr name="selesai" format="color"/>
+        <attr name="semua_buku" format="color"/>
+        <attr name="sedang_tren" format="color"/>
+        <attr name="judul_buku_trend_1" format="color"/>
+        <attr name="judul_buku_2" format="color"/>
+        <attr name="judul_buku_3" format="color"/>
+        <attr name="header_detail_buku" format="color"/>
+        <attr name="judul_buku_db" format="color"/>
+        <attr name="pengarang_buku_db" format="color"/>
+        <attr name="informasi_harga_db" format="color"/>
+        <attr name="judul_deskripsi_db" format="color"/>
+        <attr name="deskripsi_buku_db" format="color"/>
+        <attr name="rating_buku_db" format="color"/>
+        <attr name="jumlah_rating_buku_db" format="color"/>
+        <attr name="jumlah_hal_buku_db" format="color"/>
+        <attr name="hal_buku_db" format="color"/>
+        <attr name="bahasa_buku" format="color"/>
+        <attr name="bahasa_buku_db" format="color"/>
+        <attr name="desc_btn_bayar" format="color"/>
+        <attr name="rectangle_2" format="color"/>
+        <attr name="rectangle_2_1" format="color"/>
+        <attr name="rectangle_4" format="color"/>
+        <attr name="rectangle_4_r1" format="color"/>
+        <attr name="rectangle_7" format="color"/>
+        <attr name="rectangle_7_1" format="color"/>
+        <attr name="line_1" format="color"/>
+        <attr name="line_2" format="color"/>
+        <attr name="ellipse_2" format="color"/>
+        <attr name="rectangle_3" format="color"/>
+        <attr name="rectangle_1" format="color"/>
+        <attr name="dark_mode" format="color"/>
+
+    </declare-styleable>
+</resources>

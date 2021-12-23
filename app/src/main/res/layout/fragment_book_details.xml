@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container_db"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/bg_layout"
+    tools:context=".BookDetailsFragment">
+
+    <RelativeLayout
+        android:id="@+id/mask_group_db"
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:background="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/header_detail_buku"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="top|center"
+            android:text="Detail Buku"
+            android:textAppearance="@style/header_detail_buku" />
+
+        <ImageButton
+            android:id="@+id/back_btn_db"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="@id/header_detail_buku"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="317dp"
+            android:background="@drawable/btn_back_black"
+            android:contentDescription="Back Button" />
+
+        <ImageButton
+            android:id="@+id/share_btn_db"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentStart="@id/header_detail_buku"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_share_black"
+            android:contentDescription="Share Button" />
+
+    </RelativeLayout>
+
+    <!-- Mask Group Gambar buku -->
+    <RelativeLayout
+        android:id="@+id/mask_group_gambar_buku_db"
+        android:layout_width="145dp"
+        android:layout_height="221dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="145dp"
+            android:layout_height="221dp"
+            android:elevation="30dp"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/gambar_detail_buku"
+                android:layout_width="145dp"
+                android:layout_height="221dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Gambar buku"
+                android:scaleType="fitXY"
+                android:src="@drawable/trending_book1"
+                android:transitionName="gambar_buku" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <!--Background untuk Informasi Buku-->
+    <View
+        android:id="@+id/bg_desc"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginBottom="-30dp"
+        android:background="@drawable/bg"
+        android:isScrollContainer="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageButton
+        android:id="@+id/tombol_simpan"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="285dp"
+        android:layout_marginTop="290dp"
+        android:background="@drawable/ellipse_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_simpan"
+        android:layout_width="16dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/btn_collections"
+        app:layout_constraintStart_toStartOf="@id/tombol_simpan"
+        app:layout_constraintTop_toTopOf="@id/tombol_simpan" />
+
+    <!-- Mask Group Judul & Pengarang Buku -->
+    <View
+        android:id="@+id/mask_group_info_buku"
+        android:layout_width="138dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="384dp"
+        android:background="#00000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Enchantment -->
+    <TextView
+        android:id="@+id/judul_buku_db"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="345dp"
+        android:gravity="top"
+        android:text="Enchantment"
+        android:textAppearance="@style/judul_buku_db"
+        android:transitionName="judul_buku"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Guy Kawasaki -->
+    <TextView
+        android:id="@+id/pengarang_buku_db"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="-15dp"
+        android:gravity="top"
+        android:text="Guy Kawasaki"
+        android:textAppearance="@style/pengarang_buku_db"
+        android:transitionName="pengarang_buku"
+        app:layout_constraintBottom_toBottomOf="@id/judul_buku_db"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Akses -->
+    <TextView
+        android:id="@+id/informasi_harga_db"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="360dp"
+        android:gravity="top"
+        android:text="Akses gratis"
+        android:textAppearance="@style/informasi_harga_db"
+        android:transitionName="informasi_harga"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Mask Group Deskripsi buku -->
+    <View
+        android:id="@+id/mask_group_deskripsi_buku"
+        android:layout_width="315dp"
+        android:layout_height="173dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="392dp"
+        android:background="#00000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Deskripsi -->
+    <TextView
+        android:id="@+id/judul_deskripsi_db"
+        android:layout_width="66dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="505dp"
+        android:layout_marginBottom="-40dp"
+        android:gravity="top"
+        android:text="Deskripsi"
+        android:textAppearance="@style/judul_deskripsi_db"
+        android:transitionName="judul_deskripsi"
+        app:layout_constraintBottom_toBottomOf="@id/pengarang_buku_db"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/deskripsi_buku_db"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="532dp"
+        android:layout_marginBottom="-30dp"
+        android:gravity="top"
+        android:lineSpacingExtra="4sp"
+        android:text="Enchantment, as defined by bestselling business guru Guy Kawasaki, is not about manipulating people. It transforms situations and relationships."
+        android:textAppearance="@style/deskripsi_buku_db"
+        android:transitionName="deskripsi_buku"
+        android:translationY="-1.77sp"
+        app:layout_constraintBottom_toBottomOf="@id/judul_deskripsi_db"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Deskripsi Label buku -->
+    <RelativeLayout
+        android:id="@+id/group_label_desc_db"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="-70dp"
+        android:background="#00000000"
+        app:layout_constraintBottom_toBottomOf="@id/deskripsi_buku_db"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Line 1 -->
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="83dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/line_2"
+            android:elevation="1dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Line 2 -->
+        <View
+            android:id="@+id/line_2"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="224dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/line_2"
+            android:elevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Background untuk Deskripsi label -->
+        <View
+            android:id="@+id/bg_label_db"
+            android:layout_width="315dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/bg_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Group Rating buku -->
+        <View
+            android:id="@+id/group_rating_db"
+            android:layout_width="33dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp"
+            android:background="#00000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Rating buku -->
+        <TextView
+            android:id="@+id/rating_buku_db"
+            android:layout_width="33dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:gravity="top"
+            android:text="Rating"
+            android:textAppearance="@style/rating_buku_db"
+            android:transitionName="rating_buku"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 4.8 -->
+        <TextView
+            android:id="@+id/jumlah_rating_buku_db"
+            android:layout_width="19dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:gravity="top"
+            android:text="4.8"
+            android:textAppearance="@style/jumlah_rating_buku_db"
+            android:transitionName="jumlah_rating_buku"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Group Jumlah Halaman -->
+        <View
+            android:id="@+id/group_jumlah_hal_buku"
+            android:layout_width="88dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="0dp"
+            android:background="#00000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Jumlah halaman buku -->
+        <TextView
+            android:id="@+id/jumlah_hal_buku_db"
+            android:layout_width="88dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal|top"
+            android:text="Jumlah halaman"
+            android:textAppearance="@style/jumlah_hal_buku_db"
+            android:transitionName="jumlah_hal_buku"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 180 Halaman -->
+        <TextView
+            android:id="@+id/hal_buku_db"
+            android:layout_width="80dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="30dp"
+            android:gravity="top"
+            android:text="180 Halaman"
+            android:textAppearance="@style/hal_buku_db"
+            android:transitionName="hal_buku"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Group Bahasa buku -->
+        <View
+            android:id="@+id/group_bahasa_buku"
+            android:layout_width="39dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="0dp"
+            android:background="#00000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Bahasa buku -->
+        <TextView
+            android:id="@+id/bahasa"
+            android:layout_width="39dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal|top"
+            android:text="Bahasa"
+            android:textAppearance="@style/bahasa_buku"
+            android:transitionName="bahasa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- ENG -->
+        <TextView
+            android:id="@+id/bahasa_buku_db"
+            android:layout_width="25dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="251dp"
+            android:layout_marginTop="30dp"
+            android:gravity="top"
+            android:text="ENG"
+            android:textAppearance="@style/bahasa_buku_db"
+            android:transitionName="bahasa_buku"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Group Tombol baca -->
+        <View
+            android:id="@+id/group_tombol_baca"
+            android:layout_width="315dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="708dp"
+            android:background="#00000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    <!-- Tombol baca -->
+    <Button
+        android:id="@+id/btn_baca_db"
+        android:layout_width="315dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="-70dp"
+        android:background="@drawable/rectangle_4"
+        android:text="Baca sekarang"
+        android:textAppearance="@style/desc_btn_bayar"
+        app:layout_constraintBottom_toBottomOf="@id/group_label_desc_db"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
