@@ -155,6 +155,7 @@ public class HomeFragment extends Fragment implements BookAdapter.ItemClickListe
         desc_profil.setTypeface(regular);
         search_edit.setTypeface(medium);
         bagian_terbaru.setTypeface(semibold);
+        bagian_trending.setTypeface(semibold);
         daftar_buku.setTypeface(semibold);
 
         network_data();
